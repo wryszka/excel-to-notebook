@@ -161,11 +161,7 @@ elif spark.sql("SELECT 1 FROM indication_versions WHERE name = :name", args={"na
 else:
     version = spark.sql("SELECT coalesce(max(version), 0) + 1 FROM indication_versions").first()[0]
 
-    # 1. The data as it is now, and the results by year
-    spark.sql(f"INSERT INTO indication_saved_inputs SELECT {version}, accident_year, earned_premium, incurred FROM input_data")
-    spark.sql(f"INSERT INTO indication_saved_by_year SELECT {version}, * FROM by_year")
-
-    # 2. A copy of this notebook, set to read the saved data instead of today's data
+    # 1. A copy of this notebook, set to read the saved data instead of today's data
     workspace = WorkspaceClient().workspace
     this_notebook = dbutils.notebook.entry_point.getDbutils().notebook().getContext().notebookPath().get()
     code = base64.b64decode(workspace.export(this_notebook, format=ExportFormat.SOURCE).content).decode()
@@ -174,8 +170,16 @@ else:
     folder = this_notebook.rsplit("/", 1)[0] + "/saved_versions"
     saved_notebook = f"{folder}/v{version}_" + re.sub(r"\W+", "_", save_as)
     workspace.mkdirs(folder)
-    workspace.import_(path=saved_notebook, content=base64.b64encode(code.encode()).decode(),
-                      format=ImportFormat.SOURCE, language=Language.PYTHON)
+    try:
+        workspace.import_(path=saved_notebook, content=base64.b64encode(code.encode()).decode(),
+                          format=ImportFormat.SOURCE, language=Language.PYTHON)
+    except Exception as problem:
+        raise Exception(f"Nothing was saved. The copy {saved_notebook} could not be created. If the folder saved_versions "
+                        "holds copies from an earlier round, delete that folder and run again.") from problem
+
+    # 2. The data as it is now, and the results by year
+    spark.sql(f"INSERT INTO indication_saved_inputs SELECT {version}, accident_year, earned_premium, incurred FROM input_data")
+    spark.sql(f"INSERT INTO indication_saved_by_year SELECT {version}, * FROM by_year")
 
     # 3. One row in the list of versions: who, when, what changed, the assumptions, the result, the formulas
     spark.sql("""
