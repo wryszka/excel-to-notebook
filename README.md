@@ -2,15 +2,18 @@
 
 Move a spreadsheet calculation into Databricks, one small step at a time, and get the same numbers.
 
-There are three parts. Each one is short, and you can stop after any of them.
+You keep your method. The notebooks only change where the calculation lives, and what you can prove about it afterwards.
+
+There are four parts, in order. Each one is short, and you can stop after any of them.
 
 | Part | What you do | Time |
 |---|---|---|
 | [1 · Simple 101](1_simple_101) | A tiny workbook (claims, premium, a summary with `SUMIFS`) becomes three tables and one query | 5 min |
-| [2 · Loss trend](2_loss_trend) | A real-size pricing workbook: triangles, development factors, trend picks. Five short notebooks, one for each step | 20 min |
-| [3 · Unity Catalog function](3_unity_catalog_function) | Turn a formula from a notebook into a named function that others can call | 5 min |
+| [2 · Indication and versions](2_indication_and_versions) | A small rate indication from that data. Change an assumption, change a formula, save each as a version, compare two versions, and reproduce an old result | 10 min |
+| [3 · Loss trend](3_loss_trend) | A real-size pricing workbook: triangles, development factors, trend picks. Five short notebooks, one for each step | 20 min |
+| [4 · Later: a shared function](4_unity_catalog_function) | Optional. Turn a formula from a notebook into a named function that others can call | 5 min |
 
-Each part comes with its Excel file, so you can see the spreadsheet and the notebook side by side. Every part ends with a check that the notebook's numbers equal Excel's.
+Parts 1 to 3 come with an Excel file, so you can see the spreadsheet and the notebook side by side, and check that the notebook's numbers equal Excel's.
 
 ## Start here
 
@@ -21,7 +24,7 @@ You need a Databricks workspace with Unity Catalog, and a catalog where you can 
 3. Open `1_simple_101/simple_101`.
 4. Click **Run all**.
 
-The full walkthrough, with what you should see at each step, is in [docs/STEP_BY_STEP.md](docs/STEP_BY_STEP.md). The mapping from Excel formulas to SQL, and from each tab to its notebook and table, is in [docs/EXCEL_TO_SQL.md](docs/EXCEL_TO_SQL.md).
+The full walkthrough, with what you should see at each step, is in [docs/STEP_BY_STEP.md](docs/STEP_BY_STEP.md). To present parts 1 and 2 to a group in about seven minutes, use [docs/PRESENTER_WALKTHROUGH.md](docs/PRESENTER_WALKTHROUGH.md). The mapping from Excel formulas to SQL, and from each tab to its notebook and table, is in [docs/EXCEL_TO_SQL.md](docs/EXCEL_TO_SQL.md).
 
 ## Four words you'll meet
 
@@ -34,7 +37,7 @@ The full walkthrough, with what you should see at each step, is in [docs/STEP_BY
 
 ## Good to know
 
-- **Languages.** The calculations are in SQL, because it reads closest to the Excel formulas. Python is used only to read the Excel file, draw one chart and run the checks.
+- **Languages.** The calculations are in SQL, because it reads closest to the Excel formulas. Python is used only to read the Excel file, draw one chart, run the checks and save a version.
 - **Your own data.** The loss trend notebooks read three tables with a handful of columns. To run them on your own claims and premium tables, see [Use your own tables](docs/STEP_BY_STEP.md#use-your-own-tables).
 - **Compute.** Serverless, or a cluster on Databricks Runtime 14.3 LTS or above with Unity Catalog. Tested on serverless.
 - **Clean up.** Everything is created in one schema (`excel_to_notebook` unless you change it). To remove it all, including any files you uploaded to that schema: `DROP SCHEMA <catalog>.excel_to_notebook CASCADE`.

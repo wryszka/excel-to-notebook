@@ -18,8 +18,12 @@ Two tables. The first maps Excel formulas to SQL. The second maps each tab of th
 | A yellow input cell | A row in a selection table, with who, when and why | `3_development_factors`, step 2 |
 | `=PRODUCT(range)` | `exp(sum(ln(value)))` | `3_development_factors`, step 3 |
 | `=LOGEST(values, years) - 1` | `exp(regr_slope(ln(value), year)) - 1` | `4_trend`, step 2 |
-| "Save as v5_FINAL" | A new `version` in the selection table. Earlier versions stay | `3_development_factors`, `4_trend` |
-| A named formula (`LAMBDA`) | A Unity Catalog function | `make_it_a_function` |
+| Yellow assumption cells | One small `assumptions` view at the top of the notebook | `1_indication` |
+| `=(1+$B$2)^($B$4-A7)` | `power(1 + loss_trend, rating_year - accident_year)` | `1_indication`, step 1 |
+| "Save As … V2" | A saved version: the data, the assumptions, the results and a copy of the notebook, under one number | `1_indication`, last cell |
+| Opening last month's workbook | Open the copy in `saved_versions` and click Run all | `3_compare_and_reproduce` |
+| "Save as v5_FINAL" for picks | A new `version` in the selection table. Earlier versions stay | `3_development_factors`, `4_trend` |
+| A named formula (`LAMBDA`) | A Unity Catalog function (optional, later) | `make_it_a_function` |
 
 ## Loss trend workbook: tab to notebook to table
 

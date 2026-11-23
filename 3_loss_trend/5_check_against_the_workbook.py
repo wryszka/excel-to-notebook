@@ -69,6 +69,6 @@ print(f"\nAll together: {total} numbers compared with the workbook, {total_diffe
 # MAGIC
 # MAGIC To try a change: go back to `3_development_factors`, change a pick, and run notebooks 3 and 4 again. A new version is recorded. This check will then show differences, because the workbook still holds the old pick.
 # MAGIC
-# MAGIC **Next:** make a calculation reusable, in the folder `3_unity_catalog_function`.
+# MAGIC **Later, when you need it:** make a calculation reusable, in the folder `4_unity_catalog_function`.
 # MAGIC
 # MAGIC *About this example: the data is synthetic and the code is a sample to learn from.*

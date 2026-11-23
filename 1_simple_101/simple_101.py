@@ -2,13 +2,14 @@
 # MAGIC %md
 # MAGIC # Simple 101: one small spreadsheet, moved to Databricks
 # MAGIC
-# MAGIC The workbook `simple_101.xlsx` sits next to this notebook. Open it in Excel first. It has three tabs:
+# MAGIC The workbook `simple_101.xlsx` sits next to this notebook. Open it in Excel first. It has four tabs:
 # MAGIC
 # MAGIC | Tab | What it holds |
 # MAGIC |---|---|
 # MAGIC | **Claims** | 60 claims: accident year, paid, outstanding. Column E is a formula: incurred = paid + outstanding |
 # MAGIC | **Premium** | Earned premium for each accident year |
 # MAGIC | **Summary** | Formulas: claim count, incurred, premium, loss ratio and average claim for each year |
+# MAGIC | **Indication** | A small rate indication. You'll use it in the next folder, not here |
 # MAGIC
 # MAGIC This notebook does the same in four steps: read the tabs, save them as tables, calculate the Summary tab, check the numbers.
 # MAGIC
@@ -102,6 +103,6 @@ print(f"{excel.size} numbers compared with the Summary tab. Largest difference: 
 # MAGIC - A calculation you can read top to bottom, instead of formulas spread over cells.
 # MAGIC - Next month: replace the file and click **Run all**.
 # MAGIC
-# MAGIC **Next:** the same route for a real-size pricing workbook, in the folder `2_loss_trend`.
+# MAGIC **Next:** a rate indication you can change and save as versions, in the folder `2_indication_and_versions`.
 # MAGIC
 # MAGIC *About this example: the data is synthetic and the code is a sample to learn from.*

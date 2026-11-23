@@ -1,6 +1,8 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # Make a calculation reusable: a Unity Catalog function
+# MAGIC # Later, when you need it: make a calculation reusable
+# MAGIC
+# MAGIC *This part is optional. Nothing before it depends on it.*
 # MAGIC
 # MAGIC So far each formula lives in a notebook cell. That's the right place to start.
 # MAGIC
@@ -8,7 +10,7 @@
 # MAGIC
 # MAGIC It's the same idea as a named formula in Excel (`LAMBDA`), but shared and with permissions.
 # MAGIC
-# MAGIC This notebook makes two. Run the `1_simple_101` and `2_loss_trend` notebooks first.
+# MAGIC This notebook makes two. Run the `1_simple_101` and `3_loss_trend` notebooks first.
 
 # COMMAND ----------
 
